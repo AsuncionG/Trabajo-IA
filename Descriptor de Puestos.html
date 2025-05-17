@@ -4,31 +4,90 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Generador de Descripciones de Puesto</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (íconos) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
+    :root {
+      --rojo: #e63946;
+      --rojo-oscuro: #c12736;
+      --gris-claro: #f8f9fa;
+      --gris-oscuro: #343a40;
+      --sombra: rgba(0, 0, 0, 0.1);
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f5f5f5;
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Poppins', sans-serif;
+      background: var(--gris-claro);
+      color: var(--gris-oscuro);
+      max-width: 800px;
+      margin: auto;
     }
+
     h1 {
-      color: #333;
+      font-size: 2em;
+      color: var(--rojo);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+
     select, button {
-      padding: 10px;
+      padding: 12px;
       font-size: 1em;
       margin-top: 10px;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      transition: 0.2s ease;
     }
+
+    button {
+      background-color: var(--rojo);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      border: none;
+    }
+
+    button:hover {
+      background-color: var(--rojo-oscuro);
+      transform: scale(1.02);
+    }
+
     .descripcion {
       background: white;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      margin-top: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px var(--sombra);
+      border-left: 6px solid var(--rojo);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .descripcion h2 {
+      color: var(--rojo);
+      margin-top: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <h1>Generador de Descripciones de Puesto</h1>
+
+  <h1><i class="fas fa-briefcase"></i> Generador de Descripciones de Puesto</h1>
+
   <label for="puesto">Selecciona un tipo de puesto:</label><br/>
   <select id="puesto">
     <option value="">-- Elige una opción --</option>
@@ -38,8 +97,8 @@
     <option value="produccion">Producción</option>
     <option value="recursos_humanos">Recursos Humanos</option>
   </select>
-  <br/>
-  <button onclick="generarDescripcion()">Generar descripción</button>
+
+  <button onclick="generarDescripcion()"><i class="fas fa-file-alt"></i> Generar descripción</button>
 
   <div class="descripcion" id="resultado"></div>
 
