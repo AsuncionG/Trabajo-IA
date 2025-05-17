@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generador de Descripciones de Puesto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+    }
+    select, button {
+      padding: 10px;
+      font-size: 1em;
+      margin-top: 10px;
+    }
+    .descripcion {
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Generador de Descripciones de Puesto</h1>
+  <label for="puesto">Selecciona un tipo de puesto:</label><br/>
+  <select id="puesto">
+    <option value="">-- Elige una opción --</option>
+    <option value="administrativo">Administrativo</option>
+    <option value="ventas">Ventas</option>
+    <option value="it">Tecnologías de la Información</option>
+    <option value="produccion">Producción</option>
+    <option value="recursos_humanos">Recursos Humanos</option>
+  </select>
+  <br/>
+  <button onclick="generarDescripcion()">Generar descripción</button>
+
+  <div class="descripcion" id="resultado"></div>
+
+  <script>
+    const descripciones = {
+      administrativo: {
+        titulo: "Asistente Administrativo",
+        funciones: "Gestión de agendas, atención telefónica, manejo de documentos y apoyo a distintas áreas.",
+        requisitos: "Estudios en administración o afines. Dominio de herramientas ofimáticas.",
+        habilidades: "Organización, atención al detalle, comunicación efectiva."
+      },
+      ventas: {
+        titulo: "Ejecutivo de Ventas",
+        funciones: "Atención al cliente, cierre de ventas, seguimiento post-venta y cumplimiento de objetivos.",
+        requisitos: "Experiencia previa en ventas. Conocimientos en técnicas de negociación.",
+        habilidades: "Orientación al cliente, persuasión, trabajo por metas."
+      },
+      it: {
+        titulo: "Desarrollador Web",
+        funciones: "Desarrollo y mantenimiento de sitios y aplicaciones web, solución de bugs y trabajo en equipo ágil.",
+        requisitos: "Conocimientos en HTML, CSS, JavaScript. Experiencia con frameworks.",
+        habilidades: "Lógica, pensamiento crítico, capacidad de aprendizaje continuo."
+      },
+      produccion: {
+        titulo: "Operario de Producción",
+        funciones: "Operar maquinaria, seguimiento de procesos y control de calidad.",
+        requisitos: "Secundaria completa, deseable experiencia en fábricas.",
+        habilidades: "Disciplina, responsabilidad, trabajo en equipo."
+      },
+      recursos_humanos: {
+        titulo: "Analista de Recursos Humanos",
+        funciones: "Reclutamiento, selección, inducción, gestión de nóminas y clima laboral.",
+        requisitos: "Licenciatura en Psicología, RRHH o afín. Experiencia mínima de 1 año.",
+        habilidades: "Empatía, confidencialidad, habilidades interpersonales."
+      }
+    };
+
+    function generarDescripcion() {
+      const puesto = document.getElementById("puesto").value;
+      const resultado = document.getElementById("resultado");
+
+      if (puesto && descripciones[puesto]) {
+        const desc = descripciones[puesto];
+        resultado.innerHTML = `
+          <h2>${desc.titulo}</h2>
+          <p><strong>Funciones principales:</strong> ${desc.funciones}</p>
+          <p><strong>Requisitos:</strong> ${desc.requisitos}</p>
+          <p><strong>Habilidades deseadas:</strong> ${desc.habilidades}</p>
+        `;
+      } else {
+        resultado.innerHTML = "<p>Por favor, selecciona un tipo de puesto válido.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
